@@ -47,20 +47,6 @@ int tokenize_command(char *command, char **argv)
     return (argc);
 }
 
-/**
- * read_command - Read a command from standard input
- *
- * Return: The read line.
- */
-
-
-/**
- * _getenv - Get the value of an environment variable
- * @name: The name of the environment variable
- *
- * Return: The value of the environment variable if found, NULL otherwise.
- */
-
 char *_getenv(const char *name)
 {
     size_t name_len;

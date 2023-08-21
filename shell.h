@@ -13,8 +13,6 @@ char *_getenv(const char *name);
 
 void penvironment(void);
 
-char *read_command(void);
-
 int command_exists(const char *command);
 
 char *get_command_name(const char *command_with_path);
