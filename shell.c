@@ -23,6 +23,7 @@ void shell_loop(void)
         my_len = getline(&line, &ref, stdin);
         if (my_len <= 0)
         {
+        _printf("\n");
         /*EOF encountered (Ctrl+D pressed)*/
         break;
         }
