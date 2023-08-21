@@ -93,18 +93,15 @@ void execute_command(char *command, size_t len)
     if (argc > 0)
     {
     command_name = get_command_name(argv[0]);
-    if (command_name != NULL)
-    {
-    if (command_exists(command_name))
+    if (command_name != NULL && command_exists(command_name))
     {
     execute_with_fork(argv);
     }
     else
     {
-    _printf("Command not found: %s\n", command_name);
+    _printf("Command not found: %s\n", argv[0]);
     }
     free(command_name);
-    }
     }
 
     free(copy);
@@ -124,7 +121,35 @@ void execute_with_fork(char **argv)
     }
     else if (pid == 0)
     {
-        execve(argv[0], argv, NULL);
+        if (strchr(argv[0], '/') != NULL)
+        {
+            execve(argv[0], argv, NULL);
+        }
+        else
+        {
+        char *path_copy, *del, *token, *path;
+        path = _getenv("PATH");
+        if (path == NULL)
+        {
+        perror("No PATH in environment");
+        exit(EXIT_FAILURE);
+        }
+        path_copy = _strdup(path);
+        del = ":";
+        token = strtok(path_copy, del);
+        while (token != NULL)
+        {
+        char full_path[1024];
+        _snprintf(full_path, sizeof(full_path), "%s/%s", token, argv[0]);
+        if (access(full_path, X_OK) == 0)
+        {
+        execve(full_path, argv, NULL);
+        }
+        token = strtok(NULL, del);
+        }
+        perror("Command not found");
+        exit(EXIT_FAILURE);
+        }
         perror("execve Error");
         exit(EXIT_FAILURE);
     }
