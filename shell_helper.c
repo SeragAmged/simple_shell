@@ -53,49 +53,6 @@ int tokenize_command(char *command, char **argv)
  * Return: The read line.
  */
 
-char *read_command(void)
-{
-    ssize_t i;
-    char *temp;
-    char buffer[BUFFER_SIZE];
-    ssize_t n;
-    char *line = NULL;
-    size_t len = 0;
-
-    while ((n = read(STDIN_FILENO, buffer, BUFFER_SIZE)) > 0)
-    {
-        temp = realloc(line, len + n + 1);
-        if (!temp)
-        {
-            perror("Memory allocation error");
-            exit(EXIT_FAILURE);
-        }
-        line = temp;
-
-        i = 0;
-        while (i < n)
-        {
-            line[len++] = buffer[i];
-            if (buffer[i] == '\n')
-            {
-                line[len] = '\0';
-                return (line);
-            }
-            i++;
-        }
-    }
-    if (n == -1)
-    {
-        perror("Error reading input");
-        exit(EXIT_FAILURE);
-    }
-    else if (n == 0 && len == 0)
-    {
-        printf("\n");
-        exit(EXIT_SUCCESS);
-    }
-    return (line);
-}
 
 /**
  * _getenv - Get the value of an environment variable

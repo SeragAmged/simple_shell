@@ -27,16 +27,32 @@ void shell_loop(void)
         break;
         }
         /*line = read_command();*/
-        /*if(my_len < 1)
-            break;*/
-
-        if (_strcmp(line, "exit\n") == 0)
-            break;
-
-        if (_strcmp(line, "env\n") == 0)
-            penvironment();
+        /*Remove newline character if present*/
+        if (line[my_len - 1] == '\n')
+        {
+        line[my_len - 1] = '\0';
+        my_len--;
+        }
+        if (my_len > 0)
+        /*Skip empty lines*/
+        {
+        if (_strcmp(line, "exit") == 0)
+        {
+        break;
+        }
+        if (_strcmp(line, "^C") == 0)
+        {
+        break;
+        }
+        else if (_strcmp(line, "env") == 0)
+        {
+        penvironment();
+        }
         else
-            execute_command(line, my_len);
+        {
+        execute_command(line, my_len);
+        }
+        }
 
         free(line);
         line = NULL;
@@ -89,7 +105,7 @@ void execute_command(char *command, size_t len)
         free(command_name);
     }
 
-    free(copy);
+    free(copy);    
 }
 
 /**
