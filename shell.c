@@ -13,19 +13,23 @@
 void shell_loop(void)
 {
     char *line;
-    size_t my_len;
+    ssize_t my_len;
     size_t ref = 0;
 
     while (1)
     {
         _printf(PROMPT);
-
+        fflush(stdout);
         my_len = getline(&line, &ref, stdin);
-        
+        if (my_len <= 0)
+        {
+        /*EOF encountered (Ctrl+D pressed)*/
+        break;
+        }
 
         /*line = read_command();*/
-        if(my_len < 1)
-            break;
+        /*if(my_len < 1)
+            break;*/
 
         if (_strcmp(line, "exit\n") == 0)
             break;
@@ -35,8 +39,10 @@ void shell_loop(void)
         else
             execute_command(line, my_len);
 
-        /*free(line);*/
+        free(line);
+        line = NULL;
     }
+    free(line);
 }
 
 /**
