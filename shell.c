@@ -75,15 +75,15 @@ void execute_command(char *command, size_t len)
     copy = malloc(len);
     if (copy == NULL)
     {
-        /*perror("malloc error");*/
-        exit(EXIT_FAILURE);
-        return;
+    perror("malloc error");
+    exit(EXIT_FAILURE);
+    return;
     }
     i = 0;
     while (command[i] != '\0' && command[i] != '\n')
     {
-        copy[i] = command[i];
-        i++;
+    copy[i] = command[i];
+    i++;
     }
     copy[i] = '\0';
 
@@ -91,21 +91,22 @@ void execute_command(char *command, size_t len)
 
     if (argc > 0)
     {
-        command_name = get_command_name(argv[0]);
-        if (command_name != NULL && command_exists(command_name))
-        {
-            execute_with_fork(argv);
-        }
-        else
-        {
-            _printf("Command not found: ");
-            _printf(argv[0]);
-            _printf("\n");
-        }
-        free(command_name);
+    command_name = get_command_name(argv[0]);
+    if (command_name != NULL)
+    {
+    if (command_exists(command_name))
+    {
+    execute_with_fork(argv);
+    }
+    else
+    {
+    _printf("Command not found: %s\n", command_name);
+    }
+    free(command_name);
+    }
     }
 
-    free(copy);    
+    free(copy);
 }
 
 /**
