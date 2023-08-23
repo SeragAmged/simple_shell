@@ -33,11 +33,11 @@ my_len--;
 }
 if (my_len > 0)/*Skip empty lines*/
 {
-if (_strcmp(line, "exit") == 0)
+if (_strcmp_trim(line, "exit") == 0)
 {
 break;
 }
-else if (_strcmp(line, "env") == 0)
+else if (_strcmp_trim(line, "env") == 0)
 {
 penvironment();
 }

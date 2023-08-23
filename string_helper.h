@@ -6,6 +6,8 @@ int _printf(const char *format, ...);
 
 int _strcmp(const char *s1, const char *s2);
 
+int _strcmp_trim(const char *s1, const char *s2);
+
 int _snprintf(char *str, size_t size, const char *format, ...);
 
 char *_strdup(const char *s);

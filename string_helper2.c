@@ -106,3 +106,38 @@ str[size - 1] = '\0';
 va_end(args);
 return (written);
 }
+/**
+ * _strcmp_trim - Compare two strings trimed
+ * @s1: The first string
+ * @s2: The second string
+ *
+ * Return: 0 if strings are equal, <0 if s1<s2, >0 if s1>s2.
+ */
+int _strcmp_trim(const char *s1, const char *s2)
+{
+while (*s1 && (*s1 == ' ' || *s1 == '\t' || *s1 == '\n'))
+{
+s1++;
+}
+while (*s2 && (*s2 == ' ' || *s2 == '\t' || *s2 == '\n'))
+{
+s2++;
+}
+while (*s1 != '\0' && *s2 != '\0' && *s1 == *s2)
+{
+s1++;
+s2++;
+}
+if (*s1 == *s2)
+{
+return (0);
+}
+else if (*s1 < *s2)
+{
+return (-1);
+}
+else
+{
+return (1);
+}
+}
