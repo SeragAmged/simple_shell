@@ -44,6 +44,11 @@ token = strtok(NULL, del);
 argv[argc] = NULL;
 return (argc);
 }
+/**
+ * _getenv - Get value of an environment variable
+ * @name: Name of the variable
+ * Return: Value of the variable, or NULL if not found/invalid input
+ */
 char *_getenv(const char *name)
 {
 size_t name_len;
@@ -70,9 +75,9 @@ i++;
 return (NULL);
 }
 /**
- * execute_with_fork - Execute a command with fork and wait
- * @argv: An array of arguments for the command
- * @path: path of command
+ * execute_child - Execute a command in the child process
+ * @argv: Array of arguments for the command
+ * @path: Path for command execution
  */
 void execute_child(char **argv, const char *path)
 {
