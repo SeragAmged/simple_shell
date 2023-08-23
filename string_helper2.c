@@ -107,12 +107,13 @@ va_end(args);
 return (written);
 }
 /**
- * _strcmp_trim - Compare two strings trimed (ignore leading/trailing whitespace)
+ * _strcmp_trim - Compare two strings trimed
+ *  (ignore leading/trailing whitespace)
  * @s1: The first string
  * @s2: The second string
  *
  * Return: 0 if strings are equal, <0 if s1<s2, >0 if s1>s2.
-*/
+ */
 int _strcmp_trim(const char *s1, const char *s2)
 {
 while (*s1 && (*s1 == ' ' || *s1 == '\t'))
@@ -128,9 +129,19 @@ while (*s1 != '\0' && *s2 != '\0' && *s1 == *s2)
 s1++;
 s2++;
 }
+/*Handle case when one */
+/*string is shorter than the other*/
 if (*s1 == *s2)
 {
 return (0);
+}
+else if (*s1 == '\0')
+{
+return (-1);
+}
+else if (*s2 == '\0')
+{
+return (1);
 }
 else if (*s1 < *s2)
 {
