@@ -19,7 +19,9 @@ char *get_command_name(const char *command_with_path);
 
 void execute_command(char *command, size_t len);
 
-int tokenize_command(char *command, char **argv);
+char **tokenize_command(char *command);
+
+int get_argc(char **argv);
 
 void execute_child(char **argv, const char *path);
 

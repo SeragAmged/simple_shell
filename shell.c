@@ -43,12 +43,11 @@ line = NULL;
  */
 void execute_command(char *command, size_t len)
 {
-char *copy;
-size_t i;
-char *argv[ARGSIZE];
+char **argv;
 int argc;
+size_t i;
 char *command_name;
-copy = malloc(len);
+char *copy = malloc(len);
 if (copy == NULL)
 {
 perror("malloc error");
@@ -62,18 +61,17 @@ copy[i] = command[i];
 i++;
 }
 copy[i] = '\0';
-argc = tokenize_command(copy, argv);
+argv = tokenize_command(copy);
+argc = get_argc(argv);
 if (argc > 0)
 {
+command_name = get_command_name(argv[0]);
 if (_strcmp_trim(argv[0], "exit") == 0)
 exit(EXIT_SUCCESS);
 else if (_strcmp_trim(argv[0], "env") == 0)
 penvironment();
-command_name = get_command_name(argv[0]);
-if (command_name != NULL && command_exists(command_name))
-{
+else if (command_name != NULL && command_exists(command_name))
 execute_with_fork(argv);
-}
 else
 {
 _printf("Command not found: %s\n", argv[0]);
@@ -81,6 +79,7 @@ _printf("Command not found: %s\n", argv[0]);
 free(command_name);
 }
 free(copy);
+free(argv);
 }
 /**
  * execute_with_fork - Execute a command with fork and wait
