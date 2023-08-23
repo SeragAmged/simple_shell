@@ -119,11 +119,13 @@ while (*s1 && (*s1 == ' ' || *s1 == '\t' || *s1 == '\n'))
 {
 s1++;
 }
-while (*s2 && (*s2 == ' ' || *s2 == '\t' || *s2 == '\n'))
+const char *end_s2 = s2 + strlen(s2) - 1;
+while (end_s2 >= s2 && (*end_s2 == ' ' || *end_s2 == '\t' || *end_s2 == '\n'))
 {
-s2++;
+end_s2--;
 }
-while (*s1 != '\0' && *s2 != '\0' && *s1 == *s2)
+end_s2++;
+while (*s1 != '\0' && s2 != end_s2 && *s1 == *s2)
 {
 s1++;
 s2++;
