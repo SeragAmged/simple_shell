@@ -107,30 +107,23 @@ va_end(args);
 return (written);
 }
 /**
- * _strcmp_trim - Compare two strings trimed
+ * _strcmp_trim - Compare two strings trimed (ignore leading/trailing whitespace)
  * @s1: The first string
  * @s2: The second string
  *
  * Return: 0 if strings are equal, <0 if s1<s2, >0 if s1>s2.
- */
+*/
 int _strcmp_trim(const char *s1, const char *s2)
 {
-const char *end_s2 = s2 + _strlen(s2) - 1;
 while (*s1 && (*s1 == ' ' || *s1 == '\t'))
 {
 s1++;
 }
-while (end_s2 >= s2 && (*end_s2 == ' ' || *end_s2 == '\t'))
+while (*s2 && (*s2 == ' ' || *s2 == '\t'))
 {
-end_s2--;
+s2++;
 }
-end_s2++;
-
-if (*end_s2 == '\n')
-{
-end_s2--;
-}
-while (*s1 != '\0' && s2 != end_s2 && *s1 == *s2)
+while (*s1 != '\0' && *s2 != '\0' && *s1 == *s2)
 {
 s1++;
 s2++;
