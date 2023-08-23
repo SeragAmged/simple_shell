@@ -3,7 +3,7 @@
 #include <stddef.h>
 extern char **environ;
 
-#define PROMPT "$ "
+#define PROMPT "#cisfun$ "
 #define BUFFER_SIZE 1024
 #define ARGSIZE 513
 
