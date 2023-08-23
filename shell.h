@@ -27,4 +27,6 @@ void execute_with_fork(char **argv);
 
 void shell_loop(void);
 
+void _exxit(void);
+
 #endif /* SHELL_H */

@@ -24,16 +24,14 @@ my_len = getline(&line, &ref, stdin);
 if (my_len <= 0)
 {
 _printf("\n");/*EOF encountered (Ctrl+D pressed)*/
-break;
+_exxit();
 } /*line = read_command();*//*Remove newline character if present*/
 if (line[my_len - 1] == '\n')
 {
 line[my_len - 1] = '\0';
 my_len--;
 }
-
 execute_command(line, my_len);
-
 }
 free(line);
 line = NULL;
