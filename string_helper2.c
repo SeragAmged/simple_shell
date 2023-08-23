@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/wait.h>
+
 /**
  * _strdup - Duplicate a string
  * @s: The source string

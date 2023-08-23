@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/wait.h>
+
 /**
  * _printf - Print formatted output to stdout
  * @format: The format string
