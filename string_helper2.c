@@ -116,27 +116,29 @@ return (written);
 */
 int _strcmp_trim(const char *s1, const char *s2)
 {
+const char *end_s2 = s2 + _strlen(s2) - 1;
+/*Trim leading spaces in s1*/
 while (*s1 && (*s1 == ' ' || *s1 == '\t'))
 {
 s1++;
 }
-while (*s2 && (*s2 == ' ' || *s2 == '\t'))
+/* Trim trailing spaces in s2*/
+while (end_s2 >= s2 && (*end_s2 == ' ' || *end_s2 == '\t'))
 {
-s2++;
+end_s2--;
 }
-while (*s1 != '\0' && *s2 != '\0' && *s1 == *s2)
+end_s2++;
+/*Compare the trimmed strings*/
+while (*s1 != '\0' && s2 != end_s2 && *s1 == *s2)
 {
 s1++;
 s2++;
 }
-
-if (*s1 == '\0' && *s2 == '\0')
+/*Check if both strings are at the end (equal)*/
+/*or if s1 is smaller or larger*/
+if (*s1 == *s2)
 {
 return (0);
-}
-else if (*s1 == '\0' || *s2 == '\0')
-{
-return (1);
 }
 else if (*s1 < *s2)
 {
