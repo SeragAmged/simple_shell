@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/wait.h>
+#include <errno.h>
 
 /**
  * _printf - Print formatted output to stdout
