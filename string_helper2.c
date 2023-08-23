@@ -125,6 +125,10 @@ while (end_s2 >= s2 && (*end_s2 == ' ' || *end_s2 == '\t'))
 end_s2--;
 }
 end_s2++;
+
+if (*end_s2 == '\n') {
+end_s2--;
+}
 while (*s1 != '\0' && s2 != end_s2 && *s1 == *s2)
 {
 s1++;
