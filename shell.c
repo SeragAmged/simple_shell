@@ -31,24 +31,12 @@ if (line[my_len - 1] == '\n')
 line[my_len - 1] = '\0';
 my_len--;
 }
-if (my_len > 0)/*Skip empty lines*/
-{
-if (_strcmp_trim(line, "exit") == 0)
-{
-exit(EXIT_SUCCESS);
-}
-else if (_strcmp_trim(line, "env") == 0)
-{
-penvironment();
-}
-else
-{
+
 execute_command(line, my_len);
-}
+
 }
 free(line);
 line = NULL;
-} free(line);
 }
 /**
  * execute_command - Execute a command and its arguments
@@ -62,7 +50,6 @@ size_t i;
 char *argv[ARGSIZE];
 int argc;
 char *command_name;
-
 copy = malloc(len);
 if (copy == NULL)
 {
@@ -77,11 +64,13 @@ copy[i] = command[i];
 i++;
 }
 copy[i] = '\0';
-
 argc = tokenize_command(copy, argv);
-
 if (argc > 0)
 {
+if (_strcmp_trim(argv[0], "exit") == 0)
+exit(EXIT_SUCCESS);
+else if (_strcmp_trim(argv[0], "env") == 0)
+penvironment();
 command_name = get_command_name(argv[0]);
 if (command_name != NULL && command_exists(command_name))
 {
@@ -93,7 +82,6 @@ _printf("Command not found: %s\n", argv[0]);
 }
 free(command_name);
 }
-
 free(copy);
 }
 /**
