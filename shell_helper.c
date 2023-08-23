@@ -76,7 +76,7 @@ return (NULL);
  */
 void execute_child(char **argv, const char *path)
 {
-if (_strchr(argv[0], '/') != NULL)
+if (_strrchr(argv[0], '/') != NULL)
 {
 execve(argv[0], argv, NULL);
 }
