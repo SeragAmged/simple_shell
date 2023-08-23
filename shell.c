@@ -37,10 +37,6 @@ if (_strcmp(line, "exit") == 0)
 {
 break;
 }
-if (_strcmp(line, "^C") == 0)
-{
-break;
-}
 else if (_strcmp(line, "env") == 0)
 {
 penvironment();
