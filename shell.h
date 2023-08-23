@@ -21,6 +21,8 @@ void execute_command(char *command, size_t len);
 
 int tokenize_command(char *command, char **argv);
 
+void execute_child(char **argv, const char* path);
+
 void execute_with_fork(char **argv);
 
 void shell_loop(void);

@@ -69,3 +69,36 @@ i++;
 }
 return (NULL);
 }
+/**
+ * execute_with_fork - Execute a command with fork and wait
+ * @argv: An array of arguments for the command
+ * @path: path of command
+ */
+void execute_child(char **argv, const char *path)
+{
+if (_strchr(argv[0], '/') != NULL)
+{
+execve(argv[0], argv, NULL);
+}
+else
+{
+char *path_copy, *del, *token;
+path_copy = _strdup(path);
+del = ":";
+token = strtok(path_copy, del);
+while (token != NULL)
+{
+char full_path[1024];
+_snprintf(full_path, sizeof(full_path), "%s/%s", token, argv[0]);
+if (access(full_path, X_OK) == 0)
+{
+execve(full_path, argv, NULL);
+}
+token = strtok(NULL, del);
+}
+perror("Command not found");
+exit(EXIT_FAILURE);
+}
+perror("execve Error");
+exit(EXIT_FAILURE);
+}

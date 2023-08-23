@@ -35,7 +35,7 @@ if (my_len > 0)/*Skip empty lines*/
 {
 if (_strcmp_trim(line, "exit") == 0)
 {
-break;
+exit(EXIT_SUCCESS);
 }
 else if (_strcmp_trim(line, "env") == 0)
 {
@@ -110,37 +110,13 @@ exit(EXIT_FAILURE);
 }
 else if (pid == 0)
 {
-if (strchr(argv[0], '/') != NULL)
-{
-execve(argv[0], argv, NULL);
-}
-else
-{
-char *path_copy, *del, *token, *path;
-path = _getenv("PATH");
+char *path = _getenv("PATH");
 if (path == NULL)
 {
 perror("No PATH in environment");
 exit(EXIT_FAILURE);
 }
-path_copy = _strdup(path);
-del = ":";
-token = strtok(path_copy, del);
-while (token != NULL)
-{
-char full_path[1024];
-_snprintf(full_path, sizeof(full_path), "%s/%s", token, argv[0]);
-if (access(full_path, X_OK) == 0)
-{
-execve(full_path, argv, NULL);
-}
-token = strtok(NULL, del);
-}
-perror("Command not found");
-exit(EXIT_FAILURE);
-}
-perror("execve Error");
-exit(EXIT_FAILURE);
+execute_child(argv, path);
 }
 else
 {
