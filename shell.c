@@ -32,8 +32,8 @@ line[my_len - 1] = '\0';
 my_len--;
 }
 execute_command(line, my_len);
-free(line);
 }
+free(line);
 line = NULL;
 }
 /**
