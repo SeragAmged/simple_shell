@@ -133,6 +133,7 @@ free(full_path);
 token = strtok(NULL, del);
 }
 perror("Command not found");
+free(path_copy);
 exit(EXIT_FAILURE);
 }
 perror("execve Error");
