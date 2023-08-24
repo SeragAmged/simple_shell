@@ -149,3 +149,21 @@ else
 return (1);
 }
 }
+/**
+ * free_argv - free agv of tokenizer
+ * @argv: Name of the variable
+ * Return: void
+ */
+void free_argv(char **argv)
+{
+if (argv)
+{
+int i = 0;
+while (argv[i])
+{
+free(argv[i]);
+i++;
+}
+free(argv);
+}
+}

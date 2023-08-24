@@ -16,4 +16,6 @@ char *_strrchr(const char *str, int c);
 
 size_t _strlen(const char *str);
 
+void free_argv(char **argv);
+
 #endif /* STRING_H */

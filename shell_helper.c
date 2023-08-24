@@ -55,7 +55,7 @@ if (!argv)
 perror("realloc error");
 exit(EXIT_FAILURE);
 }
-argv[argc++] = token;
+argv[argc++] = strdup(token);
 token = strtok(NULL, del);
 }
 argv = realloc(argv, (argc + 1) * sizeof(char *));
@@ -65,7 +65,6 @@ perror("realloc error");
 exit(EXIT_FAILURE);
 }
 argv[argc] = NULL;
-
 return (argv);
 }
 /**
