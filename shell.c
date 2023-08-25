@@ -54,8 +54,7 @@ char *copy = malloc(len);
 if (copy == NULL)
 {
 perror("malloc error");
-free(copy);
-exit(EXIT_FAILURE);
+free(copy), exit(EXIT_FAILURE);
 return;
 }
 i = 0;
@@ -72,8 +71,7 @@ if (argc > 0)
 command_name = get_command_name(argv[0]);
 if (_strcmp_trim(argv[0], "exit") == 0)
 {
-free(copy);
-exit(EXIT_SUCCESS);
+free(copy), exit(EXIT_SUCCESS);
 }
 else if (_strcmp_trim(argv[0], "env") == 0)
 penvironment();
