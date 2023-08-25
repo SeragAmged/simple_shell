@@ -26,7 +26,7 @@ fflush(stdout);
 my_len = getline(&line, &ref, stdin);
 if (my_len <= 0)
 {
-_printf("\r");
+_printf("\r\n");
 _exxit();
 }
 if (line[my_len - 1] == '\n')
