@@ -13,7 +13,7 @@
  */
 void shell_loop(void)
 {
-char *line;
+char *line = NULL;
 ssize_t my_len;
 size_t ref = 0;
 while (1)
@@ -26,9 +26,9 @@ fflush(stdout);
 my_len = getline(&line, &ref, stdin);
 if (my_len <= 0)
 {
-_printf("\n");/*EOF encountered (Ctrl+D pressed)*/
+_printf("\n");
 _exxit();
-} /*line = read_command();*//*Remove newline character if present*/
+}
 if (line[my_len - 1] == '\n')
 {
 line[my_len - 1] = '\0';
@@ -50,7 +50,7 @@ char **argv;
 int argc;
 size_t i;
 char *command_name;
-char *copy = malloc(len);
+char *copy = malloc(len + 1);
 if (copy == NULL)
 {
 perror("malloc error");
@@ -63,6 +63,7 @@ while (command[i] != '\0' && command[i] != '\n')
 copy[i] = command[i];
 i++;
 }
+strncpy(copy, command, len);
 copy[i] = '\0';
 argv = tokenize_command(copy);
 argc = get_argc(argv);
@@ -84,7 +85,6 @@ _printf("Command not found: %s\n", argv[0]);
 free(command_name);
 }
 free_argv(argv);
-free(copy);
 }
 /**
  * execute_with_fork - Execute a command with fork and wait
