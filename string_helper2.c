@@ -13,28 +13,26 @@
  * @s: The source string
  *
  * Return: A pointer to the new duplicate string, or NULL on failure.
- */
+*/
 char *_strdup(const char *s)
 {
-size_t len = 0;
-char *new_str;
-while (s[len] != '\0')
-{
-len++;
-}
-new_str = malloc(len + 1);
-if (new_str != NULL)
-{
+size_t len = _strlen(s);
+char *new_str = malloc(len + 1);
 size_t i = 0;
+if (new_str == NULL)
+{
+perror("malloc error");
+exit(EXIT_FAILURE);
+}
 while (s[i] != '\0')
 {
 new_str[i] = s[i];
 i++;
 }
 new_str[i] = '\0';
-}
 return (new_str);
 }
+
 /**
  * _strcmp - Compare two strings
  * @s1: The first string
