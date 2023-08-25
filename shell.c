@@ -18,7 +18,11 @@ ssize_t my_len;
 size_t ref = 0;
 while (1)
 {
+if (isatty(STDIN_FILENO))
+{
+/*write(STDOUT_FILENO, PROMPT, 2);*/
 _printf(PROMPT);
+}
 fflush(stdout);
 my_len = getline(&line, &ref, stdin);
 if (my_len <= 0)

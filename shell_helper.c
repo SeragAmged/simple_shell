@@ -11,6 +11,8 @@
 
 /**
  * penvironment - Print the current environment variables
+ * void : nothing
+ * Return: nothing
  */
 void penvironment(void)
 {
