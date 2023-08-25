@@ -82,8 +82,8 @@ _printf("Command not found: %s\n", argv[0]);
 }
 free(command_name);
 }
+free_argv(argv);
 free(copy);
-free(argv);
 }
 /**
  * execute_with_fork - Execute a command with fork and wait

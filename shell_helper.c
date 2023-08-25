@@ -67,6 +67,7 @@ perror("realloc error");
 exit(EXIT_FAILURE);
 }
 argv[argc] = NULL;
+/*free_argv(argv);*/
 return (argv);
 }
 /**
@@ -123,6 +124,7 @@ char *full_path = (char *)malloc(full_path_size);
 if (!full_path)
 {
 perror("malloc error");
+free(full_path);
 exit(EXIT_FAILURE);
 }
 snprintf(full_path, full_path_size, "%s/%s", token, argv[0]);
