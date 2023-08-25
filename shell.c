@@ -26,7 +26,7 @@ fflush(stdout);
 my_len = getline(&line, &ref, stdin);
 if (my_len <= 0)
 {
-_printf("\r");/*EOF encountered (Ctrl+D pressed)*/
+_printf("\n");/*EOF encountered (Ctrl+D pressed)*/
 _exxit();
 } /*line = read_command();*//*Remove newline character if present*/
 if (line[my_len - 1] == '\n')
