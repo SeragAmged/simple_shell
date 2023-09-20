@@ -131,6 +131,7 @@ snprintf(full_path, full_path_size, "%s/%s", token, argv[0]);
 if (access(full_path, X_OK) == 0)
 {
 execve(full_path, argv, NULL);
+exit(2);
 }
 free(full_path);
 token = strtok(NULL, del);

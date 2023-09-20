@@ -15,7 +15,7 @@ int command_exists(const char *command);
 
 char *get_command_name(const char *command_with_path);
 
-void execute_command(char *command, size_t len);
+void execute_command(char *command, size_t len, unsigned long iterman);
 
 char **tokenize_command(char *command);
 

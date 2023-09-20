@@ -18,4 +18,8 @@ size_t _strlen(const char *str);
 
 void free_argv(char **argv);
 
+unsigned int number_counter(unsigned long num);
+
+char *converter(unsigned long num);
+
 #endif /* STRING_H */

@@ -16,7 +16,9 @@ void shell_loop(void)
 char *line = NULL;
 ssize_t my_len;
 size_t ref = 0;
-while (1)
+unsigned long iterman = 0;
+
+while (++iterman)
 {
 if (isatty(STDIN_FILENO))
 {
@@ -28,7 +30,6 @@ if (my_len <= 0)
 {
 if (isatty(STDIN_FILENO))
 _printf("\n");
-
 exit(EXIT_SUCCESS);
 }
 if (line[my_len - 1] == '\n')
@@ -36,7 +37,7 @@ if (line[my_len - 1] == '\n')
 line[my_len - 1] = '\0';
 my_len--;
 }
-execute_command(line, my_len);
+execute_command(line, my_len, iterman);
 }
 free(line);
 line = NULL;
@@ -46,12 +47,12 @@ line = NULL;
  * @command: The command to execute.
  * @len: length of command.
  */
-void execute_command(char *command, size_t len)
+void execute_command(char *command, size_t len, unsigned long iterman)
 {
 char **argv;
 int argc;
 size_t i;
-char *command_name;
+char *command_name, *tempiterman;
 char *copy = malloc(len);
 if (copy == NULL)
 {
@@ -83,7 +84,11 @@ execute_with_fork(argv);
 }
 else
 {
-_printf("Command not found: %s\n", argv[0]);
+tempiterman = converter(iterman);
+if (!tempiterman)
+return;
+_printf("%s: %s: %s: not found\n", _getenv("_"), tempiterman, argv[0]);
+free(tempiterman);
 }
 free(command_name);
 }
