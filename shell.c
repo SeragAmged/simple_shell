@@ -50,7 +50,7 @@ line = NULL;
 void execute_command(char *command, size_t len, unsigned long iterman)
 {
 char **argv;
-int argc;
+int argc, exit_code, status = 0;
 size_t i;
 char *command_name, *tempiterman;
 char *copy = malloc(len);
@@ -72,16 +72,12 @@ if (argc > 0)
 command_name = get_command_name(argv[0]);
 if (_strcmp_trim(argv[0], "exit") == 0)
 {
-free_argv(argv), free(copy), exit(EXIT_SUCCESS);
+free_argv(argv), free(copy), exit_code = WEXITSTATUS(status), exit(exit_code);
 }
 else if (_strcmp_trim(argv[0], "env") == 0)
-{
 penvironment();
-}
 else if (command_name != NULL && command_exists(command_name))
-{
-execute_with_fork(argv);
-}
+execute_with_fork(argv, &exit_code, &status);
 else
 {
 tempiterman = converter(iterman);
@@ -98,8 +94,9 @@ free_argv(argv), free(copy);
  * execute_with_fork - Execute a command with fork and wait
  * @argv: An array of arguments for the command
  */
-void execute_with_fork(char **argv)
+void execute_with_fork(char **argv, int *exit_code, int *status)
 {
+
 pid_t pid = fork();
 if (pid == -1)
 {
@@ -118,7 +115,11 @@ execute_child(argv, path);
 }
 else
 {
-wait(NULL);
+wait(status);
+if (WIFEXITED(*status))
+{
+*exit_code = WEXITSTATUS(*status);
+}
 }
 }
 /**

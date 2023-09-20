@@ -23,7 +23,7 @@ int get_argc(char **argv);
 
 void execute_child(char **argv, const char *path);
 
-void execute_with_fork(char **argv);
+void execute_with_fork(char **argv, int *exit_code, int *status);
 
 void shell_loop(void);
 
