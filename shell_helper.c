@@ -44,7 +44,7 @@ return (argc);
  */
 char **tokenize_command(char *command)
 {
-char *del = " ";
+char *del = " \n\0";
 char *token;
 int argc = 0;
 char **argv = NULL;
