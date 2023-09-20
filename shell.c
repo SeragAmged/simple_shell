@@ -46,6 +46,7 @@ line = NULL;
  * execute_command - Execute a command and its arguments
  * @command: The command to execute.
  * @len: length of command.
+ * @iterman: the number of current iteration.
  */
 void execute_command(char *command, size_t len, unsigned long iterman)
 {
@@ -92,7 +93,9 @@ free_argv(argv), free(copy);
 }
 /**
  * execute_with_fork - Execute a command with fork and wait
- * @argv: An array of arguments for the command
+ * @argv: An array of arguments for the command.
+ * @exit_code: exit code.
+ * @status: exit status.
  */
 void execute_with_fork(char **argv, int *exit_code, int *status)
 {
