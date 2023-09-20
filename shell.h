@@ -7,8 +7,6 @@ extern char **environ;
 #define BUFFER_SIZE 1024
 #define ARGSIZE 513
 
-int custom_exec(char *command, char **args);
-
 char *_getenv(const char *name);
 
 void penvironment(void);
@@ -28,7 +26,5 @@ void execute_child(char **argv, const char *path);
 void execute_with_fork(char **argv);
 
 void shell_loop(void);
-
-void _exxit(void);
 
 #endif /* SHELL_H */

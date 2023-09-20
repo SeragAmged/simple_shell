@@ -94,12 +94,4 @@ return ((char *)str);
 }
 return (last);
 }
-/**
- * _exxit - exit
- * @void: nothing
- * Return: nothing
- */
-void _exxit(void)
-{
-exit(EXIT_SUCCESS);
-}
+

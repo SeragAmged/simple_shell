@@ -27,7 +27,7 @@ my_len = getline(&line, &ref, stdin);
 if (my_len <= 0)
 {
 _printf("\n");
-_exxit();
+exit(EXIT_SUCCESS);
 }
 if (line[my_len - 1] == '\n')
 {
