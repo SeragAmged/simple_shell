@@ -9,24 +9,24 @@
  */
 char **_args_builder(char *str, size_t *argc, char *delim)
 {
-	size_t n = 0;
-	char **argv, *token;
+size_t n = 0;
+char **argv, *token;
 
-	argv = malloc(sizeof(char *) * 256);
-	token = strtok(str, delim);
-	while (token)
-	{
-		argv[n++] = token;
-		token = strtok(NULL, delim);
-	}
-	argv[n] = NULL;
-	*argc = n;
-	if (n == 0)
-	{
-		freeBuffs(str, argv);
-		argv = NULL;
-	}
-	return (argv);
+argv = malloc(sizeof(char *) * 256);
+token = strtok(str, delim);
+while (token)
+{
+argv[n++] = token;
+token = strtok(NULL, delim);
+}
+argv[n] = NULL;
+*argc = n;
+if (n == 0)
+{
+freeBuffs(str, argv);
+argv = NULL;
+}
+return (argv);
 }
 
 /**
@@ -36,18 +36,18 @@ char **_args_builder(char *str, size_t *argc, char *delim)
  */
 char *_strdup(const char *str)
 {
-	size_t length, i;
-	char *new_str;
+size_t length, i;
+char *new_str;
 
-	if (!str)
-		return (NULL);
-	length = _strlen(str);
-	new_str = malloc((length + 1) * sizeof(char));
-	_alloc_check(new_str);
-	for (i = 0; str[i] != '\0'; i++)
-		new_str[i] = str[i];
-	new_str[i] = '\0';
-	return (new_str);
+if (!str)
+return (NULL);
+length = _strlen(str);
+new_str = malloc((length + 1) * sizeof(char));
+_alloc_check(new_str);
+for (i = 0; str[i] != '\0'; i++)
+new_str[i] = str[i];
+new_str[i] = '\0';
+return (new_str);
 }
 
 /**
@@ -57,15 +57,15 @@ char *_strdup(const char *str)
  */
 size_t _strlen(const char *str)
 {
-	size_t i;
+size_t i;
 
-	if (str == NULL)
-		return (0);
+if (str == NULL)
+return (0);
 
-	for (i = 0; str[i] != '\0'; i++)
-		;
+for (i = 0; str[i] != '\0'; i++)
+;
 
-	return (i);
+return (i);
 }
 
 /**
@@ -76,16 +76,16 @@ size_t _strlen(const char *str)
  */
 char *_strcat(char *destination, char *source)
 {
-	int i, j;
-	char *str = malloc(_strlen(destination) + _strlen(source) + 1);
+int i, j;
+char *str = malloc(_strlen(destination) + _strlen(source) + 1);
 
-	for (i = 0; destination[i] != '\0'; i++)
-		str[i] = destination[i];
-	for (j = 0; source[j] != '\0'; j++)
-		str[i + j] = source[j];
-	free(destination);
-	str[i + j] = '\0';
-	return (str);
+for (i = 0; destination[i] != '\0'; i++)
+str[i] = destination[i];
+for (j = 0; source[j] != '\0'; j++)
+str[i + j] = source[j];
+free(destination);
+str[i + j] = '\0';
+return (str);
 }
 
 /**
@@ -96,13 +96,13 @@ char *_strcat(char *destination, char *source)
  */
 char *_startsWith(char *str, const char *target)
 {
-	int i = 0;
+int i = 0;
 
-	while (target[i] != '\0')
-	{
-		if (target[i] != str[i])
-			return (NULL);
-		i++;
-	}
-	return (str + i);
+while (target[i] != '\0')
+{
+if (target[i] != str[i])
+return (NULL);
+i++;
+}
+return (str + i);
 }

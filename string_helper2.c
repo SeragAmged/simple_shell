@@ -6,7 +6,7 @@
  */
 void _putchar(char c)
 {
-	write(STDOUT_FILENO, &c, 1);
+write(STDOUT_FILENO, &c, 1);
 }
 
 /**
@@ -15,13 +15,13 @@ void _putchar(char c)
  */
 void _print(char *s)
 {
-	int i;
+int i;
 
-	if (s == NULL)
-		return;
+if (s == NULL)
+return;
 
-	for (i = 0; s[i] != '\0'; i++)
-		_putchar(s[i]);
+for (i = 0; s[i] != '\0'; i++)
+_putchar(s[i]);
 }
 
 /**
@@ -31,35 +31,35 @@ void _print(char *s)
  */
 char *UnsignedLong_toString(unsigned long x)
 {
-	char *c;
-	unsigned int i, d = 0;
-	unsigned long temp;
+char *c;
+unsigned int i, d = 0;
+unsigned long temp;
 
-	if (x == 0)
-		return ((char *) '0');
+if (x == 0)
+return ((char *) '0');
 
-	temp = x;
-	while (temp > 0)
-	{
-		temp /= 10;
-		d++;
-	}
+temp = x;
+while (temp > 0)
+{
+temp /= 10;
+d++;
+}
 
-	c = malloc(sizeof(char) * (d + 1));
-	if (!c)
-	{
-		free(c);
-		return (0);
-	}
+c = malloc(sizeof(char) * (d + 1));
+if (!c)
+{
+free(c);
+return (0);
+}
 
-	for (i = 0; i < d; i++)
-	{
-		c[d - i - 1] = (x % 10) + '0';
-		x /= 10;
-	}
+for (i = 0; i < d; i++)
+{
+c[d - i - 1] = (x % 10) + '0';
+x /= 10;
+}
 
-	c[d] = '\0';
-	return (c);
+c[d] = '\0';
+return (c);
 }
 
 /**
@@ -70,22 +70,22 @@ char *UnsignedLong_toString(unsigned long x)
  */
 int _strcmp(char *s1, char *s2)
 {
-	while ((*s1 != '\0') && (*s2 != '\0'))
-	{
-		if (*s1 < *s2)
-			return (-1);
-		else if (*s1 > *s2)
-			return (1);
-		s1++;
-		s2++;
-	}
+while ((*s1 != '\0') && (*s2 != '\0'))
+{
+if (*s1 < *s2)
+return (-1);
+else if (*s1 > *s2)
+return (1);
+s1++;
+s2++;
+}
 
-	if (*s1 == '\0' && *s2 == '\0')
-		return (0);
-	else if (*s1 == '\0')
-		return (-1);
-	else
-		return (1);
+if (*s1 == '\0' && *s2 == '\0')
+return (0);
+else if (*s1 == '\0')
+return (-1);
+else
+return (1);
 }
 
 /**
@@ -96,38 +96,38 @@ int _strcmp(char *s1, char *s2)
  */
 char *_strtok(char *string, char *delim)
 {
-	static char *index;
-	int i;
+static char *index;
+int i;
 
-	if (string != NULL)
-		index = string;
-	else
-		string = index;
-	if (*index == '\0')
-		return (NULL);
-	while (*index != '\0')
-	{
-		for (i = 0; delim[i] != '\0'; i++)
-		{
-			if (*index == delim[i])
-			{
-				if (index == string)
-				{
-					index++;
-					string++;
-				} else
-				{
-					*index = '\0';
-					break;
-				}
-			}
-		}
-		if (*index == '\0')
-		{
-			index++;
-			return (string);
-		}
-		index++;
-	}
-	return (string);
+if (string != NULL)
+index = string;
+else
+string = index;
+if (*index == '\0')
+return (NULL);
+while (*index != '\0')
+{
+for (i = 0; delim[i] != '\0'; i++)
+{
+if (*index == delim[i])
+{
+if (index == string)
+{
+index++;
+string++;
+} else
+{
+*index = '\0';
+break;
+}
+}
+}
+if (*index == '\0')
+{
+index++;
+return (string);
+}
+index++;
+}
+return (string);
 }

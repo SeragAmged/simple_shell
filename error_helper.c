@@ -6,10 +6,10 @@
  */
 void _alloc_check(void *ptr)
 {
-	if (ptr == NULL)
-	{
-		perror(getPWD());
-	}
+if (ptr == NULL)
+{
+perror(getPWD());
+}
 }
 
 /**
@@ -21,55 +21,55 @@ void _alloc_check(void *ptr)
  * Return: 0 if command exist, else -1
  */
 int _command_exist(void *ptr, char *command,
-							   size_t iter_num, int *status)
+size_t iter_num, int *status)
 {
-	char *temp;
+char *temp;
 
-	if (ptr == NULL)
-	{
-		_print(getPWD());
-		_print(": ");
-		temp = UnsignedLong_toString(iter_num);
-		_print(temp);
-		free(temp);
-		_print(": ");
-		_print(command);
-		_print(": not found");
-		_print("\n");
-		*status = 127;
-		errno = 127;
-		return (-1);
-	}
-	*status = 0;
-	errno = 0;
-	return (0);
+if (ptr == NULL)
+{
+_print(getPWD());
+_print(": ");
+temp = UnsignedLong_toString(iter_num);
+_print(temp);
+free(temp);
+_print(": ");
+_print(command);
+_print(": not found");
+_print("\n");
+*status = 127;
+errno = 127;
+return (-1);
+}
+*status = 0;
+errno = 0;
+return (0);
 }
 
 int _my_exit(char *cmd, char *arg1, int *status, size_t iter_num)
 {
-	char *temp;
-	int st;
+char *temp;
+int st;
 
-	if (!_strcmp(cmd, "exit"))
-	{
-		if (arg1 == NULL)
-			return (1);
-		st = _isPositive(arg1);
-		if (!st)
-		{
-			_print(getPWD());
-			_print(": ");
-			temp = UnsignedLong_toString(iter_num);
-			_print(temp);
-			free(temp);
-			_print(": exit: Illegal number: ");
-			_print(arg1);
-			_print("\n");
-			*status = 2;
-			return (-1);
-		}
-		*status = (int) _str_To_UnsignedInt(arg1);
-		return (1);
-	}
-	return (0);
+if (!_strcmp(cmd, "exit"))
+{
+if (arg1 == NULL)
+return (1);
+st = _isPositive(arg1);
+if (!st)
+{
+_print(getPWD());
+_print(": ");
+temp = UnsignedLong_toString(iter_num);
+_print(temp);
+free(temp);
+_print(": exit: Illegal number: ");
+_print(arg1);
+_print("\n");
+*status = 2;
+return (-1);
+}
+*status = (int) _str_To_UnsignedInt(arg1);
+return (1);
+}
+return (0);
 }

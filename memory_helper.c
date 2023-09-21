@@ -9,35 +9,35 @@
  */
 char **_reallocate(char **ptr, size_t old_size, size_t new_size)
 {
-	char **new_ptr;
-	unsigned long i;
+char **new_ptr;
+unsigned long i;
 
-	if (ptr == NULL)
-		return (malloc(new_size));
+if (ptr == NULL)
+return (malloc(new_size));
 
-	if (old_size == new_size)
-		return (ptr);
+if (old_size == new_size)
+return (ptr);
 
-	if (new_size == 0)
-	{
-		free(ptr);
-		return (NULL);
-	}
+if (new_size == 0)
+{
+free(ptr);
+return (NULL);
+}
 
-	new_ptr = malloc(new_size);
-	if (new_ptr == NULL)
-		return (ptr);
+new_ptr = malloc(new_size);
+if (new_ptr == NULL)
+return (ptr);
 
-	for (i = 0; (i < old_size) && (i < new_size); i++)
-		new_ptr[i] = ptr[i];
-	free(ptr);
+for (i = 0; (i < old_size) && (i < new_size); i++)
+new_ptr[i] = ptr[i];
+free(ptr);
 
-	if (new_size > old_size)
-	{
-		for (; i < new_size; i++)
-			new_ptr[i] = NULL;
-	}
-	return (new_ptr);
+if (new_size > old_size)
+{
+for (; i < new_size; i++)
+new_ptr[i] = NULL;
+}
+return (new_ptr);
 }
 
 /**
@@ -46,8 +46,8 @@ char **_reallocate(char **ptr, size_t old_size, size_t new_size)
  */
 void _free_pointer(void *ptr)
 {
-	if (ptr != NULL)
-		free(ptr);
+if (ptr != NULL)
+free(ptr);
 }
 
 /**
@@ -56,12 +56,12 @@ void _free_pointer(void *ptr)
  */
 void _mass_free(char **ptr)
 {
-	void *p = ptr;
+void *p = ptr;
 
-	while (*ptr != NULL)
-		_free_pointer(*ptr++);
+while (*ptr != NULL)
+_free_pointer(*ptr++);
 
-	_free_pointer(p);
+_free_pointer(p);
 }
 
 /**
@@ -71,6 +71,6 @@ void _mass_free(char **ptr)
  */
 void freeBuffs(char *buffer, char **argv)
 {
-	_free_pointer(buffer);
-	_free_pointer(argv);
+_free_pointer(buffer);
+_free_pointer(argv);
 }
