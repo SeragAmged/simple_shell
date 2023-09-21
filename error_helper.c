@@ -44,7 +44,16 @@ return (-1);
 errno = 0;
 return (0);
 }
-
+/**
+ * _my_exit - Handle the "exit" command.
+ *
+ * @cmd: Command name ("exit").
+ * @arg1: Argument for exit status.
+ * @status: Pointer to exit status.
+ * @iter_num: Unused iteration number.
+ *
+ * Return: 2 if @arg1 is invalid, else 0
+ */
 int _my_exit(char *cmd, char *arg1, int *status, size_t iter_num)
 {
 char *temp;

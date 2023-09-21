@@ -56,7 +56,7 @@ return (result);
 }
 
 /**
-* _execute - executes command if possible
+* _execute_command - executes command if possible
 * @argv: string args
 * @arg0: command
 * Return: status

@@ -41,7 +41,7 @@ return (new_ptr);
 }
 
 /**
- * _free - frees a pointer
+ * _free_pointer - frees a pointer
  * @ptr: pointer
  */
 void _free_pointer(void *ptr)
@@ -51,7 +51,7 @@ free(ptr);
 }
 
 /**
- * bigFree - frees 2d array
+ * _mass_free - frees 2d array
  * @ptr: pointer
  */
 void _mass_free(char **ptr)

@@ -94,7 +94,19 @@ freeBuffs(buffer, argv);
 exit(status);
 }
 }
-
+/**
+ * _env - Execute the "env" command.
+ *
+ * @arg: The first argument (command name).
+ * @buffer: A buffer for storing output.
+ * @argv: An array of arguments (unused in this function).
+ *
+ * This function checks if the provided argument is "env" and if so,
+ * it calls the _printEnv function to display the environment variables.
+ * It then frees memory allocated for the buffer and argv.
+ *
+ * Return: 1 if the argument is "env," 0 otherwise.
+ */
 int _env(char *arg, char *buffer, char **argv)
 {
 if (!_strcmp(arg, "env"))
