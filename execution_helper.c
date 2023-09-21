@@ -1,4 +1,6 @@
 #include "shell.h"
+#include <stdio.h>
+#include <sys/stat.h>
 
 /**
  * _Command_right - checks if command exists
@@ -12,8 +14,8 @@ struct stat st;
 if (!cmd_path || (stat(cmd_path, &st) != 0))
 return (0);
 
-/*if (st.st_mode & S_IFREG)*/
-/*return (1);*/
+if (st.st_mode & S_IFREG)
+return (1);
 
 return (0);
 }
