@@ -1,30 +1,63 @@
 #ifndef SHELL_H
 #define SHELL_H
-#include <stddef.h>
+
+#define PROMPT "$ "
+#define LINE_DELIMITER " \n\r\t"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
+#include <signal.h>
+#include <errno.h>
+
 extern char **environ;
 
-#define PROMPT "#cisfun$ "
-#define BUFFER_SIZE 1024
-#define ARGSIZE 513
+char *getPWD(void);
+void signal_helper(int sig_id);
+void _end_of_file(ssize_t line_size, char **argv, char *buffer, int status);
+int _env(char *arg, char *buffer, char **argv);
 
-char *_getenv(const char *name);
+int _Command_right(char *cmd);
+char *_find_Path(char *path_par, char *cmd);
+int _execute_command(char *arg0, char **argv);
 
-void penvironment(void);
+void _printEnv(void);
+char *_getenv(const char *key, size_t len);
 
-int command_exists(const char *command);
+char **_args_builder(char *str, unsigned long *argc, char *delim);
+char *_strdup(const char *str);
+size_t _strlen(const char *str);
+char *_strcat(char *destination, char *source);
+char *_startsWith(char *str, const char *needle);
 
-char *get_command_name(const char *command_with_path);
+void _putchar(char c);
+void _print(char *s);
+char *UnsignedLong_toString(unsigned long x);
+int _strcmp(char *s1, char *s2);
+char *_strtok(char *str, char *delim);
 
-void execute_command(char *command, size_t len, unsigned long iterman);
+unsigned int am_I_delim(char c, char *delim);
+unsigned int _str_To_UnsignedInt(const char *str);
+unsigned int _str_To_Int(const char *str);
+int _isPositive(char *str);
+int _isNumber(char *str);
 
-char **tokenize_command(char *command);
 
-int get_argc(char **argv);
 
-void execute_child(char **argv, const char *path);
+char **_realloc(char **ptr, size_t old_size, size_t new_size);
+void _free_pointer(void *ptr);
+void _mass_free(char **ptr);
+void freeBuffs(char *buffer, char **argv);
 
-void execute_with_fork(char **argv, int *exit_code, int *status);
+void _alloc_check(void *ptr);
 
-void shell_loop(void);
+int _command_exist(void *ptr, char *command,
+							   size_t iter_num, int *status);
 
-#endif /* SHELL_H */
+int _my_exit(char *cmd, char *arg1, int *status, size_t iter_num);
+
+#endif
