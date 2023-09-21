@@ -65,7 +65,8 @@ if (signum == SIGINT)
 {
 _print("\n");
 _print(PROMPT);
-} else if (signum == SIGHUP)
+}
+else if (signum == SIGHUP)
 _print("\n");
 }
 

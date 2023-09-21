@@ -115,7 +115,8 @@ if (index == string)
 {
 index++;
 string++;
-} else
+}
+else
 {
 *index = '\0';
 break;

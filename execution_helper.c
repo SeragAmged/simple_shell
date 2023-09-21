@@ -70,13 +70,15 @@ if (pid < 0)
 {
 perror("Fork error");
 return (errno);
-} else if (pid == 0)
+}
+else if (pid == 0)
 {
 execve(arg0, argv, environ);
 perror(arg0);
 status = errno;
 exit(1);
-} else
+}
+else
 {
 wait(&status);
 if (WIFEXITED(status))
